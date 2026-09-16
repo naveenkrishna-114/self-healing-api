@@ -28,6 +28,8 @@ env/
 .benchmarks/
 *.pdf
 generate_pdf_report.py
+*REPORT*.md
+docs/*REPORT*.md
 
 # Testing
 .pytest_cache/
