@@ -66,11 +66,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/self-healing-api/self-healing-api"
-Documentation = "https://self-healing-api.readthedocs.io"
-Repository = "https://github.com/self-healing-api/self-healing-api"
-"Bug Tracker" = "https://github.com/self-healing-api/self-healing-api/issues"
-Changelog = "https://github.com/self-healing-api/self-healing-api/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/naveenkrishna-114/self-healing-api"
+Documentation = "https://github.com/naveenkrishna-114/self-healing-api#readme"
+Repository = "https://github.com/naveenkrishna-114/self-healing-api"
+"Bug Tracker" = "https://github.com/naveenkrishna-114/self-healing-api/issues"
+Changelog = "https://github.com/naveenkrishna-114/self-healing-api/blob/main/CHANGELOG.md"
 
 # ── Package discovery ────────────────────────────────────────────────────────
 [tool.setuptools.packages.find]

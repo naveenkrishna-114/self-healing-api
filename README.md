@@ -158,7 +158,7 @@ self-healing-api/
 
 ```bash
 # Clone the repository
-git clone https://github.com/self-healing-api/self-healing-api.git
+git clone https://github.com/naveenkrishna-114/self-healing-api.git
 cd self-healing-api
 
 # Create virtual environment
