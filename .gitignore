@@ -1,0 +1,86 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.whl
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.env
+.env.*
+.benchmarks/
+*.pdf
+generate_pdf_report.py
+
+# Testing
+.pytest_cache/
+.hypothesis/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyright/
+
+# Linting
+.ruff_cache/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Distribution / packaging
+*.tar.gz
+*.zip
+
+# Secrets — never commit these
+.env.local
+.env.production
+secrets.json
+credentials.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Benchmarks output
+benchmarks/results/
+*.benchmark
+
+# Docs build
+docs/_build/
+docs/site/
+
+# Jupyter
+*.ipynb_checkpoints
