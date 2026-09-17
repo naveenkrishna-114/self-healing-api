@@ -84,5 +84,8 @@ benchmarks/results/
 docs/_build/
 docs/site/
 
+# Datasets
+*.csv
+
 # Jupyter
 *.ipynb_checkpoints
