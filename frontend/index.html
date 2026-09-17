@@ -189,9 +189,11 @@
       let icon = '🔹';
 
       if (type === 'SUCCESS') { colorClass = 'text-emerald-400'; borderClass = 'border-emerald-900/60'; icon = '✅'; }
-      if (type === 'RETRY') { colorClass = 'text-amber-400'; borderClass = 'border-amber-900/60'; icon = '🔄'; }
-      if (type === 'CIRCUIT') { colorClass = 'text-rose-400'; borderClass = 'border-rose-900/60'; icon = '⛔'; }
-      if (type === 'FALLBACK') { colorClass = 'text-purple-400'; borderClass = 'border-purple-900/60'; icon = '🛡️'; }
+      else if (type === 'SUCCESS (AUTO-HEALED)') { colorClass = 'text-cyan-400'; borderClass = 'border-cyan-500/40'; icon = '✅'; }
+      else if (type === 'SUCCESS (FALLBACK)') { colorClass = 'text-purple-300'; borderClass = 'border-purple-500/40'; icon = '🛡️'; }
+      else if (type === 'RETRY') { colorClass = 'text-amber-400'; borderClass = 'border-amber-900/60'; icon = '🔄'; }
+      else if (type === 'CIRCUIT') { colorClass = 'text-rose-400'; borderClass = 'border-rose-900/60'; icon = '⛔'; }
+      else if (type === 'FALLBACK') { colorClass = 'text-purple-400'; borderClass = 'border-purple-900/60'; icon = '🛡️'; }
 
       const entry = document.createElement('div');
       entry.className = `p-3 rounded-lg bg-slate-900/90 border ${borderClass} shadow-sm animate-fadeIn`;
@@ -301,7 +303,7 @@
         stats.fallbacks++;
         stats.success++; // Fallback gracefully preserves uptime
         stats.latencies.push(0.024);
-        log('FALLBACK', 'Circuit is OPEN. Fast-fail load shed triggered in 23.9 µs ➔ Serving Cached 200 OK Fallback Payload', 'latency: 0.024ms');
+        log('SUCCESS (FALLBACK)', 'Circuit is OPEN. Fast-fail load shed triggered in 23.9 µs ➔ Serving Cached 200 OK Fallback Payload', 'latency: 0.024ms');
         updateStats();
         return;
       }
@@ -326,7 +328,7 @@
         breaker.failures = Math.min(breaker.failures + 1, breaker.threshold);
         document.getElementById('failureCount').innerText = `${breaker.failures} / ${breaker.threshold}`;
 
-        log('RETRY', 'Downstream returned HTTP 503 Service Unavailable.<br/>&nbsp;&nbsp;↳ Injected UUID4 Idempotency-Key<br/>&nbsp;&nbsp;↳ Executed AWS Full Jitter Exponential Backoff (Wait 120ms)<br/>&nbsp;&nbsp;↳ Retry Attempt #2: Succeeded with HTTP 200 OK (AUTO-HEALED)!', 'latency: 0.062ms');
+        log('SUCCESS (AUTO-HEALED)', 'Downstream returned HTTP 503 Service Unavailable.<br/>&nbsp;&nbsp;↳ Injected UUID4 Idempotency-Key<br/>&nbsp;&nbsp;↳ Executed AWS Full Jitter Exponential Backoff (Wait 120ms)<br/>&nbsp;&nbsp;↳ Retry Attempt #2: Succeeded with HTTP 200 OK (AUTO-HEALED)!', 'latency: 0.062ms');
         
         if (breaker.failures >= breaker.threshold) {
           tripBreaker();
@@ -338,7 +340,7 @@
         stats.healed++;
         stats.success++;
         stats.latencies.push(0.058);
-        log('RETRY', 'Downstream returned HTTP 429 Too Many Requests.<br/>&nbsp;&nbsp;↳ Parsed RFC 7231 Retry-After: 2 seconds<br/>&nbsp;&nbsp;↳ Adaptive Token Bucket delayed retry without thread blocking<br/>&nbsp;&nbsp;↳ Auto-recovered HTTP 200 OK!', 'latency: 0.058ms');
+        log('SUCCESS (AUTO-HEALED)', 'Downstream returned HTTP 429 Too Many Requests.<br/>&nbsp;&nbsp;↳ Parsed RFC 7231 Retry-After: 2 seconds<br/>&nbsp;&nbsp;↳ Adaptive Token Bucket delayed retry without thread blocking<br/>&nbsp;&nbsp;↳ Auto-recovered HTTP 200 OK!', 'latency: 0.058ms');
       }
 
       else if (scenario === 'timeout') {
@@ -346,7 +348,7 @@
         stats.healed++;
         stats.success++;
         stats.latencies.push(0.071);
-        log('RETRY', 'ConnectTimeout encountered on Primary Node.<br/>&nbsp;&nbsp;↳ Failover Router switched traffic to Secondary Healthy Node<br/>&nbsp;&nbsp;↳ Request executed successfully with 0 lost packets!', 'latency: 0.071ms');
+        log('SUCCESS (AUTO-HEALED)', 'ConnectTimeout encountered on Primary Node.<br/>&nbsp;&nbsp;↳ Failover Router switched traffic to Secondary Healthy Node<br/>&nbsp;&nbsp;↳ Request executed successfully with HTTP 200 OK (0 lost packets)!', 'latency: 0.071ms');
       }
 
       updateStats();
@@ -354,3 +356,4 @@
   </script>
 </body>
 </html>
+
