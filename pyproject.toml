@@ -122,6 +122,9 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S", "T20"]
+"test_website.py" = ["T20", "E501", "S", "F541"]
+"examples/**" = ["T20", "E501", "I", "F841", "S"]
+"benchmarks/**" = ["T20", "E501", "S", "E402"]
 "src/self_healing_api/retry/jitter.py" = ["S311"]
 "src/self_healing_api/routing/router.py" = ["S311"]
 
