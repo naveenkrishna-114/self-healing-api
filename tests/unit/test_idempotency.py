@@ -31,7 +31,7 @@ class TestIdempotencyGuard:
 
     def test_auto_generate_key_on_retry(self) -> None:
         guard = IdempotencyGuard(IdempotencyConfig(auto_generate=True))
-        headers = {}
+        headers: dict[str, str] = {}
         result = guard.check_or_inject_key("POST", headers, attempt=2)
         assert "Idempotency-Key" in result
         assert len(result["Idempotency-Key"]) > 10

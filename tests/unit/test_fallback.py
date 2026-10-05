@@ -1,4 +1,4 @@
-"""Unit tests for FallbackHandler."""
+from typing import Any
 
 import pytest
 
@@ -22,7 +22,7 @@ def context() -> FallbackContext:
 @pytest.mark.unit
 class TestFallbackHandler:
     def test_custom_callable_handler(self, context: FallbackContext) -> None:
-        def custom_handler(ctx: FallbackContext) -> dict:
+        def custom_handler(ctx: FallbackContext) -> dict[str, Any]:
             return {"fallback": True, "attempts": ctx.attempt_count}
 
         handler = FallbackHandler(FallbackConfig(handler=custom_handler))

@@ -78,7 +78,7 @@ class TestRecovery:
         assert breaker.state == CircuitState.OPEN
 
         clock.advance(30.0)
-        assert breaker.state == CircuitState.HALF_OPEN
+        assert breaker.state == CircuitState.HALF_OPEN  # type: ignore[comparison-overlap]
 
     def test_half_open_allows_probe_request(
         self, breaker: CircuitBreaker, clock: FakeClock
@@ -137,7 +137,7 @@ class TestReset:
             breaker.record_failure()
         assert breaker.state == CircuitState.OPEN
         breaker.reset()
-        assert breaker.state == CircuitState.CLOSED
+        assert breaker.state == CircuitState.CLOSED  # type: ignore[comparison-overlap]
 
     def test_allows_requests_after_reset(self, breaker: CircuitBreaker) -> None:
         for _ in range(3):

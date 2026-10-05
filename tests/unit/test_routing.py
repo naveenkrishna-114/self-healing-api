@@ -68,7 +68,7 @@ class TestHealthAwareRouter:
 
     def test_routing_failover_disabled_and_fallback_strategy(self) -> None:
         router_no_failover = HealthAwareRouter(
-            RoutingConfig(failover_enabled=False, strategy="unknown_strategy"),
+            RoutingConfig(failover_enabled=False, strategy="unknown_strategy"),  # type: ignore[arg-type]
             ["https://f1.com", "https://f2.com"],
             None,
         )
